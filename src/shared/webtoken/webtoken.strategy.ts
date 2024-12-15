@@ -13,7 +13,7 @@ export class WebtokenStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate({ sub }: any) {
-    return { id: sub };
+  async validate(payload: any) {
+    return { id: payload.sub, email: payload.email, role: payload.role };
   }
 }

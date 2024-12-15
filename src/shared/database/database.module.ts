@@ -9,16 +9,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        type: 'mssql',
+        type: 'mysql',
         logging: true,
         synchronize: true,
         autoLoadEntities: true,
         options: { enableArithAbort: true },
-        url: configService.get<string>('DATABASE_URL'),
         entities: [__dirname + '../../apps/entities/*.entity.ts'],
+        url: configService.get<string>('DATABASE_URL'),
         ssl: {
           rejectUnauthorized: true,
-          ca: readFileSync(join(__dirname, '../../../aiven.pem')),
+          ca: readFileSync(join(__dirname, '../../../aiven.pem')).toString(),
         },
       }),
     }),

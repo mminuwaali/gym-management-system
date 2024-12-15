@@ -1,4 +1,4 @@
-import { Entity, Column, OneToMany } from 'typeorm';
+import { Entity, Column } from 'typeorm';
 import { BaseEntity } from 'src/shared/database/entities/base.entity';
 
 @Entity('users')
@@ -12,6 +12,9 @@ export class User extends BaseEntity {
   @Column({ unique: true })
   email: string;
 
-  @Column({ type: 'enum', enum: ['Super Admin', 'Gym Owner', 'Instructor', 'Gym User'] })
+  @Column({
+    type: 'enum',
+    enum: ['Super Admin', 'Gym Owner', 'Instructor', 'Gym User'],
+  })
   role: RoleType;
 }

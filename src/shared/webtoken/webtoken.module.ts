@@ -5,8 +5,8 @@ import { PassportModule } from '@nestjs/passport';
 import { WebtokenStrategy } from './webtoken.strategy';
 
 @Module({
-  exports: [JwtModule],
   providers: [WebtokenStrategy],
+  exports: [JwtModule, WebtokenStrategy],
   imports: [
     PassportModule,
     JwtModule.registerAsync({

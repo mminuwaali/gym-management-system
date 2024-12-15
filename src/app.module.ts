@@ -10,25 +10,18 @@ import { AuthService } from './apps/services/auth.service';
 
 // repositoryies
 import { AuthRepository } from './apps/repositories/auth.repository';
-import { AuthController } from './apps/controllers/auth.controller';
 
 // controllers
-
-
+import { AuthController } from './apps/controllers/auth.controller';
 
 @Module({
-  imports:[
+  imports: [
     DatabaseModule,
     WebtokenModule,
     ConfigModule.forRoot({ isGlobal: true }),
   ],
-  providers: [
-    AuthService,
-    AuthRepository,
-  ],
-  exports:[
-    AuthRepository,
-  ],
+  exports: [AuthRepository],
   controllers: [AuthController],
+  providers: [AuthService, AuthRepository],
 })
 export class AppModule {}
